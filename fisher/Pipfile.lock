@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "9419d98950913d6c4ce061336cda223ea7ecb726e27ab288976caf5308657f34"
+            "sha256": "44e7abcfd775510f73ae5e4f770ca2da327b827cd8c2b1db7e81e53682872fed"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -36,6 +36,13 @@
                 "sha256:5b94b49521f6456670fdb30cd82a4eca9412788a93fa6dd6df72c94d5a8ff2d7"
             ],
             "version": "==7.0"
+        },
+        "cymysql": {
+            "hashes": [
+                "sha256:b2a20c6d5373a16590b75f149a7cb2215a6d3bb2fc856b1b75f437ccf1e716d4"
+            ],
+            "index": "pypi",
+            "version": "==0.9.14"
         },
         "flask": {
             "hashes": [
