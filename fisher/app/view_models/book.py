@@ -1,30 +1,42 @@
-
 class BookViewModel:
-    def __init__(self,book):
-        self.title=book['title']
-        self.publisher= book['publisher']
+    def __init__(self, book):
+        self.title = book['title']
+        self.publisher = book['publisher']
         self.pages = book['pages']
         self.author = '、'.join(book['author'])
-        self.price=book['price']
-        self.summary= book['summary']
-        self.image=book['image']
+        self.price = book['price']
+        self.summary = book['summary']
+        self.image = book['image']
+
+    @property
+    def intro(self):
+        intros = filter(lambda x: True if x else False,
+                        [self.author, self.publisher, self.price])
+        return '/'.join(intros)
+
 
 class BookCollection:
     def __init__(self):
-        self.total=0
-        self.books=[]
-        self.keyword=''
+        self.total = 0
+        self.books = []
+        self.keyword = ''
 
-    def fill(self,yushu_book,keyword):
-        self.total=yushu_book.total
-        self.keyword=keyword
-        self.books=[BookViewModel(book) for book in yushu_book.books]
+    def fill(self, yushu_book, keyword):
+        """
+        将数据填充到类属性中
+        :param yushu_book:
+        :param keyword:
+        :return: list
+        """
+        self.total = yushu_book.total
+        self.keyword = keyword
+        self.books = [BookViewModel(book) for book in yushu_book.books]
 
 
 class _BookViewModel:
 
     @classmethod
-    def package_single(cls,data,keyword):
+    def package_single(cls, data, keyword):
         """
         返回单本书籍信息
         :param data:
@@ -32,17 +44,17 @@ class _BookViewModel:
         :return: dict
         """
         returned = {
-            'books':[],
-            'total':0,
-            'keyword':keyword
+            'books': [],
+            'total': 0,
+            'keyword': keyword
         }
         if data:
             returned['total'] = 1
-            returned['books']=[cls.__cut_book_data(data)]
+            returned['books'] = [cls.__cut_book_data(data)]
         return returned
 
     @classmethod
-    def package_collection(cls,data,keyword):
+    def package_collection(cls, data, keyword):
         """
         返回多本书籍信息
         :param data:
@@ -60,16 +72,16 @@ class _BookViewModel:
         return returned
 
     @classmethod
-    def __cut_book_data(cls,data):
+    def __cut_book_data(cls, data):
         """
         裁剪数据数据
         :param data:
         :return:dict
         """
-        book={
-            'title':data['title'],
-            'publisher':data['publisher'],
-            'pages':data['pages'] or '',
+        book = {
+            'title': data['title'],
+            'publisher': data['publisher'],
+            'pages': data['pages'] or '',
             'author': '、'.join(data['author']),
             'price': data['price'],
             'summary': data['summary'] or '',
