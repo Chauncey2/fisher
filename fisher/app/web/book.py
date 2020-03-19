@@ -32,7 +32,6 @@ def search():
         books.fill(yushu_book, q)
     else:
         flash("搜索关键字不符合要求，请重新输入关键字")
-
     return render_template('search_result.html', books=books)
 
 
@@ -41,4 +40,5 @@ def book_detail(isbn):
     yushu_book = YuShuBook()
     yushu_book.search_by_isbn(isbn)
     book = BookViewModel(yushu_book.first)
+
     return render_template('book_detail.html', book=book, wishes=[], gifts=[])
