@@ -13,6 +13,7 @@ class YuShuBook:
         self.total = 0
         self.books = []
 
+
     def search_by_isbn(self, isbn):
         url = self.isbn_url.format(isbn)
         result = HTTP.get(url)

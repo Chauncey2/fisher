@@ -1,6 +1,7 @@
-from flask import render_template, request
+from flask import render_template, request, redirect, url_for
 
-from app.forms.auth import RegisterForm
+from app.forms.auth import RegisterForm, LoginForm
+from app.models.base import db
 from app.models.user import User
 from . import web
 
@@ -9,16 +10,25 @@ from . import web
 def register():
     form = RegisterForm(request.form)
     if request.method == 'POST' and form.validate():
+        # 将用户信息持久化打数据库
+        print('test')
         user = User()
         user.set_attrs(form.data)
-    else:
-        pass
-    return render_template('auth/register.html', form={'data': {}})
+        db.session.add(user)
+        db.session.commit()
+
+        # 注册成功，页面重定向
+        redirect(url_for('web.login'))
+    return render_template('auth/register.html', form=form)
 
 
 @web.route('/login', methods=['GET', 'POST'])
 def login():
-    pass
+    form = LoginForm(request.form)
+    if request.method == 'POST' and form.validate():
+        pass
+
+    return render_template('auth/login.html', form='')
 
 
 @web.route('/reset/password', methods=['GET', 'POST'])

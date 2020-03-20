@@ -10,6 +10,7 @@ class Base(db.Model):
     status = Column(SmallInteger, default=1)
 
     def set_attrs(self, attrs_dict):
-        for key, value in attrs_dict:
+        for key, value in attrs_dict.items():
+            # hasattr\setattr python中的动态赋值
             if hasattr(self, key) and key != 'id':
                 setattr(self, key, value)
