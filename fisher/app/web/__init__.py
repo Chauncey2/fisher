@@ -2,7 +2,6 @@
 蓝图
 """
 from flask import Blueprint
-
 web = Blueprint('web', __name__)
 
 # 将视图函数在蓝图中进行注册

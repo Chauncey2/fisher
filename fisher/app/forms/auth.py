@@ -25,7 +25,7 @@ class RegisterForm(Form):
         :return:
         """
         if User.query.filter_by(email=field.data).first():
-            raise ValidationError("昵称已经窜仔")
+            raise ValidationError("昵称已经注册")
 
 
 class LoginForm(Form):
