@@ -43,7 +43,7 @@ def login():
             return redirect(next)
         else:
             flash("用户不存在或者密码错误")
-
+    print('*'*20)
     return render_template('auth/login.html', form=form)
 
 

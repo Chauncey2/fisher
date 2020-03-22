@@ -1,4 +1,4 @@
-from flask import current_app, flash, render_template, url_for
+from flask import current_app, flash, render_template, url_for, redirect
 from flask_login import login_required, current_user
 
 from app.models.base import db
@@ -25,20 +25,10 @@ def save_to_gifts(isbn):
             gift.id = current_user.id
             current_user.beans += current_app.config['BEANS_UPLOAD_ONE_BOOK']
             db.session.add(gift)
-        # try:
-        #     gift = Gift()
-        #     gift.isbn = isbn
-        #     gift.id = current_user.id
-        #     current_user.beans += current_app.config['BEANS_UPLOAD_ONE_BOOK']
-        #     db.session.add(gift)
-        #     db.session.commit()
-        # except Exception as e:
-        #     db.session.rollback()
-        #     raise e
     else:
         flash("书籍已经存在心愿清单或者愿望清单中")
 
-    return render_template(url_for('web.book_detail', isbn=isbn))
+    return redirect(url_for('web.book_detail', isbn=isbn))
 
 
 @web.route('/gifts/<gid>/redraw')

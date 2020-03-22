@@ -55,7 +55,7 @@ class User(UserMixin, Base):
         :param isbn:
         :return:
         """
-        if is_isbn_or_key(isbn):
+        if is_isbn_or_key(isbn)!='isbn':
             return False
         yushu_book = YuShuBook()
         yushu_book.search_by_isbn(isbn)

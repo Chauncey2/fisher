@@ -22,7 +22,9 @@ def create_app():
 
     @login_manager.user_loader
     def load_user(user_id):
-        return None
+        from app.models.user import User
+        user = db.session.query(User).get(user_id)
+        return user
 
     return app
 
