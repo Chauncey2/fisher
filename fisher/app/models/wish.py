@@ -1,6 +1,6 @@
 from sqlalchemy.orm import relationship
 from app.models.base import Base
-from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, SmallInteger
+from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
 
 
 class Wish(Base):

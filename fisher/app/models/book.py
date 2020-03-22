@@ -15,5 +15,3 @@ class Book(Base):
     summary = Column(String(1000))
     image = Column(String(50))
 
-    def sample(self):
-        pass
