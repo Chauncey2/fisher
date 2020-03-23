@@ -22,7 +22,7 @@ def save_to_gifts(isbn):
         with db.auto_commit():
             gift = Gift()
             gift.isbn = isbn
-            gift.id = current_user.id
+            gift.uid = current_user.id
             current_user.beans += current_app.config['BEANS_UPLOAD_ONE_BOOK']
             db.session.add(gift)
     else:
