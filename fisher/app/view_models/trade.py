@@ -14,9 +14,9 @@ class TradeInfo:
                 user_name=single.user.nickname,
                 time=single.create_datetime.strftime('%Y-%m-%d'),
                 id=single.id
-             )
+            )
         else:
-            time='未知'
+            time = '未知'
 
         return dict(
             user_name=single.user.nickname,

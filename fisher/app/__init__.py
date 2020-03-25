@@ -25,7 +25,6 @@ def create_app():
         from app.models.user import User
         user = db.session.query(User).get(user_id)
         return user
-
     return app
 
 
