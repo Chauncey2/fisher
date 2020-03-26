@@ -18,15 +18,16 @@ class SQLAlchemy(_SQLAlchemy):
 
 
 class Query(BaseQuery):
+
     def filter_by(self, **kwargs):
         """
         重定义filter_by方法
         :param kwargs:
         :return:
         """
-        if 'statues' not in kwargs.keys():
-            kwargs['statues'] = 1
-        super(Query, self).filter_by(**kwargs)
+        if 'status' not in kwargs.keys():
+            kwargs['status'] = 1
+        return super(Query, self).filter_by(**kwargs)
 
 
 db = SQLAlchemy(query_class=Query)
